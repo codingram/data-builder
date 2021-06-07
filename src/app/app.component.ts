@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+declare const bootstrap: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'data-builder';
+
+  triggerModal() {
+    let myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    myModal.show();
+  }
 }

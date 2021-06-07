@@ -1,0 +1,18 @@
+<div class="pl-2" [formGroup]="group">
+    <div class="row">
+        <div class="col-md-3">
+            <label [for]="'keyFor_' + id" class="form-label">Key Name</label>
+            <input type="text" class="form-control" [id]="'keyFor_' + id" formControlName="keyname" />
+        </div>
+        <div class="col-md-3">
+            <label [for]="'type_' + id" class="form-label">Type</label>
+
+
+            <select class="form-select" [id]="'type_' + id" formControlName="type">
+                <option [value]="null" disabled>Select Type</option>
+                <option *ngFor="let type of valueTypes">{{type}}</option>
+            </select>
+        </div>
+    </div>
+
+</div>

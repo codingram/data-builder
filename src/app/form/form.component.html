@@ -1,0 +1,11 @@
+{{dataForm.value|json}}
+<form [formGroup]="dataForm">
+    <div formArrayName="data">
+        <div *ngFor="let group of data.controls; let i = index">
+            <app-form-group [group]="group" [rowIndex]="i"></app-form-group>
+        </div>
+        <div class="text-end">
+            <button class="btn btn-primary" (click)="addDefaultFormGroup()">Add More</button>
+        </div>
+    </div>
+</form>
