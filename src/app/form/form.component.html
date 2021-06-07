@@ -1,5 +1,5 @@
-{{dataForm.value|json}}
-<form [formGroup]="dataForm">
+<!-- {{dataForm.value|json}} -->
+<form class="p-2" [formGroup]="dataForm">
     <div formArrayName="data">
         <div *ngFor="let group of data.controls; let i = index">
             <app-form-group [group]="group" [rowIndex]="i"></app-form-group>

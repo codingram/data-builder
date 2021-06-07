@@ -1,18 +1,42 @@
-<div class="pl-2" [formGroup]="group">
-    <div class="row">
+<div class="pl-2" [formGroup]="form">
+    <div class="row mb-3">
         <div class="col-md-3">
             <label [for]="'keyFor_' + id" class="form-label">Key Name</label>
             <input type="text" class="form-control" [id]="'keyFor_' + id" formControlName="keyname" />
         </div>
         <div class="col-md-3">
             <label [for]="'type_' + id" class="form-label">Type</label>
-
-
-            <select class="form-select" [id]="'type_' + id" formControlName="type">
+            <select class="form-select" [id]="'type_' + id" formControlName="type" (change)="typeChanged()">
                 <option [value]="null" disabled>Select Type</option>
-                <option *ngFor="let type of valueTypes">{{type}}</option>
+                <option *ngFor="let type of dataTypes">{{type}}</option>
             </select>
         </div>
+        <ng-container *ngIf="form.contains('valueType')">
+            <div class="col-md-3">
+                <label [for]="'valueType_' + id" class="form-label">Value Type</label>
+                <select class="form-select" [id]="'valueType_' + id" formControlName="valueType"
+                    (change)="typeChanged()">
+                    <option [value]="null" disabled>Select Value Type</option>
+                    <option *ngFor="let type of valueTypes[form.get('type').value]">{{type}}</option>
+                </select>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="form.contains('strArrType')">
+            <div class="col-md-3">
+                <label [for]="'strArrType_' + id" class="form-label">String Value Type</label>
+                <select class="form-select" [id]="'strArrType_' + id" formControlName="strArrType"
+                    (change)="typeChanged()">
+                    <option [value]="null" disabled>Select Value Type</option>
+                    <option *ngFor="let type of valueTypes[form.get('type').value]">{{type}}</option>
+                </select>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="form.contains('repeatFor')">
+            <div class="col-md-3">
+                <label [for]="'repeatFor_' + id" class="form-label">Repeat For</label>
+                <input type="number" class="form-control" [id]="'repeatFor_' + id" formControlName="repeatFor" />
+            </div>
+        </ng-container>
     </div>
 
 </div>
