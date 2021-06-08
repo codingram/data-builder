@@ -12,13 +12,10 @@ export class FormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.dataForm = this.fb.group({
-      data: this.fb.array([])
+      data: this.fb.array([]),
+      repeatFor: [0]
     })
     this.addDefaultFormGroup()
-    // for (const iterator of this.data.controls) {
-    //   console.log("🚀 ~ file: form.component.ts ~ line 19 ~ FormComponent ~ constructor ~ this.data", this.data)
-    //   console.log(iterator);
-    // }
   }
 
   get data() {
@@ -34,6 +31,11 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  submit() {
+    console.log(this.dataForm.value)
+    console.log(JSON.stringify(this.dataForm.value))
   }
 
 }

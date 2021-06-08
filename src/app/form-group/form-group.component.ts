@@ -32,43 +32,37 @@ export class FormGroupComponent implements OnInit {
   }
 
   typeChanged() {
+    this.form.contains('strArrType') && this.form.removeControl('strArrType');
+    this.form.contains('repeatFor') && this.form.removeControl('repeatFor');
+    this.form.contains('valueType') && this.form.removeControl('valueType');
+    this.form.contains('dataArr') && this.form.removeControl('dataArr');
+
     switch (this.form.get('type').value) {
       case 'string':
-        this.form.contains('strArrType') && this.form.removeControl('strArrType');
-        this.form.contains('repeatFor') && this.form.removeControl('repeatFor');
         this.form.addControl('valueType', this.fb.control(null, Validators.required));
         break;
 
       case 'number':
-        this.form.contains('strArrType') && this.form.removeControl('strArrType');
-        this.form.contains('repeatFor') && this.form.removeControl('repeatFor');
         this.form.addControl('valueType', this.fb.control(null, Validators.required));
 
         break;
 
       case 'id':
-        this.form.contains('strArrType') && this.form.removeControl('strArrType');
-        this.form.contains('repeatFor') && this.form.removeControl('repeatFor');
         this.form.addControl('valueType', this.fb.control(null, Validators.required));
 
         break;
 
       case 'date':
-        this.form.contains('strArrType') && this.form.removeControl('strArrType');
-        this.form.contains('repeatFor') && this.form.removeControl('repeatFor');
         this.form.addControl('valueType', this.fb.control(null, Validators.required));
 
         break;
 
       case 'array of string':
-        this.form.contains('valueType') && this.form.removeControl('valueType');
         this.form.addControl('strArrType', this.fb.control(null, Validators.required));
         this.form.addControl('repeatFor', this.fb.control(null, Validators.required));
         break;
 
       case 'array of object':
-        this.form.contains('strArrType') && this.form.removeControl('strArrType');
-        this.form.contains('valueType') && this.form.removeControl('valueType');
         this.form.addControl('repeatFor', this.fb.control(null, Validators.required));
         this.form.addControl('dataArr', this.fb.array([this.fb.group({
           id: [Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)],
@@ -78,9 +72,6 @@ export class FormGroupComponent implements OnInit {
         break;
 
       case 'object':
-        this.form.contains('strArrType') && this.form.removeControl('strArrType');
-        this.form.contains('repeatFor') && this.form.removeControl('repeatFor');
-        this.form.contains('valueType') && this.form.removeControl('valueType');
         this.form.addControl('dataArr', this.fb.array([this.fb.group({
           id: [Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)],
           keyname: [null, Validators.required],
