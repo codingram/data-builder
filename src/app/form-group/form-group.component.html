@@ -1,5 +1,5 @@
-<div class="pl-2" [formGroup]="form">
-    <div class="row mb-3">
+<div class="ps-3 border rounded" [formGroup]="form">
+    <div class="row mb-3 mx-0">
         <div class="col-md-3">
             <label [for]="'keyFor_' + id" class="form-label">Key Name</label>
             <input type="text" class="form-control" [id]="'keyFor_' + id" formControlName="keyname" />
@@ -36,6 +36,17 @@
                 <label [for]="'repeatFor_' + id" class="form-label">Repeat For</label>
                 <input type="number" class="form-control" [id]="'repeatFor_' + id" formControlName="repeatFor" />
             </div>
+        </ng-container>
+        <ng-container *ngIf="form.contains('dataArr')">
+            <div formArrayName="dataArr">
+                <div *ngFor="let group of formarr.controls; let i = index">
+                    <app-form-group [group]="group" [rowIndex]="i"></app-form-group>
+                </div>
+                <div class="text-end">
+                    <button class="btn btn-primary" (click)="addDefaultFormGroup()">Add More</button>
+                </div>
+            </div>
+            <!-- <app-form-array [formArr]="formarr"></app-form-array> -->
         </ng-container>
     </div>
 

@@ -15,11 +15,10 @@ export class FormComponent implements OnInit {
       data: this.fb.array([])
     })
     this.addDefaultFormGroup()
-    for (const iterator of this.data.controls) {
-      console.log("🚀 ~ file: form.component.ts ~ line 19 ~ FormComponent ~ constructor ~ this.data", this.data)
-      console.log(iterator);
-
-    }
+    // for (const iterator of this.data.controls) {
+    //   console.log("🚀 ~ file: form.component.ts ~ line 19 ~ FormComponent ~ constructor ~ this.data", this.data)
+    //   console.log(iterator);
+    // }
   }
 
   get data() {

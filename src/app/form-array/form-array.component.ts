@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-array',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormArrayComponent implements OnInit {
 
-  constructor() { }
+  @Input() formArr;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
+
+  get data() {
+    return this.formArr as FormArray;
+  }
+
+  addDefaultFormGroup() {
+    this.data.push(this.fb.group({
+      id: [Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)],
+      keyname: [null, Validators.required],
+      type: [null, Validators.required],
+    }))
+  }
+
 
 }

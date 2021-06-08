@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-group',
@@ -70,12 +70,22 @@ export class FormGroupComponent implements OnInit {
         this.form.contains('strArrType') && this.form.removeControl('strArrType');
         this.form.contains('valueType') && this.form.removeControl('valueType');
         this.form.addControl('repeatFor', this.fb.control(null, Validators.required));
+        this.form.addControl('dataArr', this.fb.array([this.fb.group({
+          id: [Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)],
+          keyname: [null, Validators.required],
+          type: [null, Validators.required],
+        })]));
         break;
 
       case 'object':
         this.form.contains('strArrType') && this.form.removeControl('strArrType');
         this.form.contains('repeatFor') && this.form.removeControl('repeatFor');
         this.form.contains('valueType') && this.form.removeControl('valueType');
+        this.form.addControl('dataArr', this.fb.array([this.fb.group({
+          id: [Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)],
+          keyname: [null, Validators.required],
+          type: [null, Validators.required],
+        })]));
         break;
 
 
@@ -84,4 +94,15 @@ export class FormGroupComponent implements OnInit {
     }
   }
 
+  get formarr() {
+    return this.form.get('dataArr') as FormArray;
+  }
+
+  addDefaultFormGroup() {
+    this.formarr.push(this.fb.group({
+      id: [Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)],
+      keyname: [null, Validators.required],
+      type: [null, Validators.required],
+    }))
+  }
 }
