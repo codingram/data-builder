@@ -32,12 +32,10 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.datagen.generateData();
   }
 
   submit() {
-    console.log(this.dataForm.value)
-    console.log(JSON.stringify(this.dataForm.value))
+    this.datagen.generateData(this.dataForm.value);
   }
 
 }
