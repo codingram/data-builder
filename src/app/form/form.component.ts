@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataGeneratorService } from '../data-generator.service';
 
 @Component({
   selector: 'app-form',
@@ -10,7 +11,7 @@ export class FormComponent implements OnInit {
 
   dataForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private datagen: DataGeneratorService) {
     this.dataForm = this.fb.group({
       data: this.fb.array([]),
       repeatFor: [0]
@@ -31,6 +32,7 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.datagen.generateData();
   }
 
   submit() {
