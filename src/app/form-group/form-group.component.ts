@@ -63,7 +63,7 @@ export class FormGroupComponent implements OnInit {
         break;
 
       case 'array of object':
-        this.form.addControl('repeatFor', this.fb.control(null, Validators.required));
+        this.form.addControl('repeatFor', this.fb.control(2, Validators.required));
         this.form.addControl('dataArr', this.fb.array([this.fb.group({
           id: [Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)],
           keyname: [null, Validators.required],

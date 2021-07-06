@@ -44,6 +44,7 @@ export class DataGeneratorService {
   finalData = [];
 
   generateData(data) {
+    this.finalData = [];
     for (let i = 0; i < data.repeatFor; i++) {
       let a = {};
       for (const obj of data.data) {
@@ -78,9 +79,11 @@ export class DataGeneratorService {
       case 'array of object':
         final[obj.keyname] = [];
         for (let i = 0; i < obj.repeatFor; i++) {
+          let innerObj = {}
           for (const iterator of obj.dataArr) {
-            final[obj.keyname].push(this.generateObject(iterator))
+            innerObj = { ...innerObj, ...this.generateObject(iterator) }
           }
+          final[obj.keyname].push(innerObj)
         }
         break
       case 'object':
@@ -93,7 +96,6 @@ export class DataGeneratorService {
         break;
     }
     return final;
-
   }
 
   generateStr(type) {

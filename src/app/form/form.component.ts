@@ -10,11 +10,12 @@ import { DataGeneratorService } from '../data-generator.service';
 export class FormComponent implements OnInit {
 
   dataForm: FormGroup;
+  generatedJsonData = null;
 
   constructor(private fb: FormBuilder, private datagen: DataGeneratorService) {
     this.dataForm = this.fb.group({
       data: this.fb.array([]),
-      repeatFor: [0]
+      repeatFor: [1]
     })
     this.addDefaultFormGroup()
   }
@@ -26,7 +27,7 @@ export class FormComponent implements OnInit {
   addDefaultFormGroup() {
     this.data.push(this.fb.group({
       id: [Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)],
-      keyname: [null, Validators.required],
+      keyname: ['root', Validators.required],
       type: [null, Validators.required],
     }))
   }
@@ -35,7 +36,7 @@ export class FormComponent implements OnInit {
   }
 
   submit() {
-    this.datagen.generateData(this.dataForm.value);
+    this.generatedJsonData = this.datagen.generateData(this.dataForm.value);
+    console.log("generatedJsonData", this.generatedJsonData)
   }
-
 }
